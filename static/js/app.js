@@ -87,12 +87,7 @@ function buildCharts(sample,data) {
 
        
        
-       
-       
-       
-       
-       
-        // Gauge chart code starts here
+// ***************** BONUS: Gauge chart code ****************
         const washingFreq = selectedMetadata.wfreq;
 
         const gaugeData = [{
@@ -134,6 +129,8 @@ function buildCharts(sample,data) {
 
         Plotly.newPlot('gauge', gaugeData, gaugeLayout);
     }
+// *************************************************************************************
+
 
 function buildMetadata(sample, data) {
         // Filter the metadata for the selected sample
