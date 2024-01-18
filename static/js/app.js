@@ -22,6 +22,7 @@ function init() {
     });
 }
 
+// Update charts and metadata table when the dropdown option is changed
 function optionChanged(newSample) {
     buildCharts(newSample, globalData);
     buildMetadata(newSample, globalData);
@@ -40,7 +41,7 @@ function buildCharts(sample,data) {
         const otuIds = selectedSample.otu_ids.slice(0, 10).reverse();
         const otuLabels = selectedSample.otu_labels.slice(0, 10).reverse();
 
-
+        //Build bar chart
         const barData = [{
             x: sampleValues,
             y: otuIds.map(id => `OTU ${id}`),
@@ -63,7 +64,7 @@ function buildCharts(sample,data) {
         Plotly.newPlot('bar', barData, barLayout);
 
 
-
+        //Build bubble chart
         const bubbleData = [{
             x: selectedSample.otu_ids,
             y: selectedSample.sample_values,
@@ -91,6 +92,7 @@ function buildCharts(sample,data) {
 // ***************** BONUS: Gauge chart code ****************
         const washingFreq = selectedMetadata.wfreq;
 
+        //Build gauge
         const gaugeData = [{
             type: "indicator",
             mode: "gauge+number",
@@ -99,8 +101,8 @@ function buildCharts(sample,data) {
             gauge: {
                 axis: { range: [null, 9] },
                 bar: { color: "rgba(8,29,88,0)" }, // Hide the bar
-                borderwidth: 2,
-                bordercolor: "gray",
+                borderwidth: 1,
+                bordercolor: "black",
                 steps: [
                     { range: [0, 1], color: "#FDE725FF" },
                     { range: [1, 2], color: "#B8DE29FF" },
@@ -113,8 +115,7 @@ function buildCharts(sample,data) {
                     { range: [8, 9], color: "481567FF" }
                 ],
                 threshold: {
-                    line: { color: "black", width: 4 },
-                    thickness: 0.75,
+                    line: { color: "black", width: 3 },
                     value: washingFreq
                 }
             }
@@ -123,9 +124,7 @@ function buildCharts(sample,data) {
         const gaugeLayout = {
             width: 600,
             height: 450,
-            margin: { t: 0, b: 0 },
-            paper_bgcolor: "white",
-            font: { color: "black", family: "Arial" }
+            margin: { t: 0, b: 0 }
         };
 
         Plotly.newPlot('gauge', gaugeData, gaugeLayout);
