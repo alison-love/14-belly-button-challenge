@@ -46,4 +46,4 @@ The data is fetched from a JSON file that is hosted on a static server. It inclu
 ## Deployment
 
 The dashboard is deployed using GitHub Pages. You can view the live dashboard at
-https://alison-love.github.io/14-belly-button-challenge/)https://alison-love.github.io/14-belly-button-challenge/.
+<br>https://alison-love.github.io/14-belly-button-challenge/
