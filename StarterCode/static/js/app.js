@@ -11,14 +11,14 @@ function init() {
         });
 
         // Use the first test subject ID from the list to build the initial plots
-        var firstSample = data.names[0];
-        buildCharts(firstSample);
-        buildMetadata(firstSample);
+        const firstSample = data.names[0];
+        buildCharts(firstSample, data);
+        buildMetadata(firstSample, data);
     });
 }
 
 // // Function to build the charts
-function buildCharts(sample) {
+function buildCharts(sample,data) {
     // Use D3 to read in `samples.json`
     d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then((data) => {
         // Filter the data for the selected sample
@@ -30,45 +30,31 @@ function buildCharts(sample) {
         var otuIds = selectedSample.otu_ids.slice(0, 10).reverse();
         var otuLabels = selectedSample.otu_labels.slice(0, 10).reverse();
 
-        // Create a trace for the bar chart
-        var barTrace = {
+
+        const barData = [{
             x: sampleValues,
-            y: otuIds.map(id => `OTU ${id}`), // Format the labels
+            y: otuIds.map(id => `OTU ${id}`),
             text: otuLabels,
             type: 'bar',
-            orientation: 'h' // Horizontal bar chart
-        };
-
-        var barData = [barTrace];
-
-        // Define the layout for the bar chart
-        var barTrace = {
-            x: sampleValues,
-            y: otuIds.map(id => `OTU ${id}`), // Format the labels
-            text: otuLabels,
-            type: 'bar',
-            orientation: 'h', 
+            orientation: 'h',
             marker: {
                 color: '#6C3483'
             }
-        };
-        
-        var barData = [barTrace];
-        
-        var barLayout = {
+        }];
+    
+        const barLayout = {
             title: "Top 10 OTUs Found in Individual",
             margin: { t: 30, l: 150 },
             xaxis: { title: "Sample Values" },
             yaxis: { title: "OTU ID" }
-            // The marker property is not used here in barLayout
         };
 
         // Render the bar chart
         Plotly.newPlot('bar', barData, barLayout);
 
 
-        // Create a trace for the bubble chart
-        var bubbleTrace = {
+
+        const bubbleData = [{
             x: selectedSample.otu_ids,
             y: selectedSample.sample_values,
             text: selectedSample.otu_labels,
@@ -78,23 +64,26 @@ function buildCharts(sample) {
                 color: selectedSample.otu_ids,
                 colorscale: 'Viridis'
             }
-        };
-
-        var bubbleData = [bubbleTrace];
-
-        // Define the layout for the bubble chart
-        var bubbleLayout = {
+        }];
+    
+        const bubbleLayout = {
             title: 'Bacteria Cultures Per Sample',
             xaxis: { title: 'OTU ID' },
             yaxis: { title: 'Sample Values' },
             margin: { t: 0 },
-            hovermode: 'closest',
-            showlegend: false
+            hovermode: 'closest'
         };
 
         // Render the bubble chart
         Plotly.newPlot('bubble', bubbleData, bubbleLayout);
 
+       
+       
+       
+       
+       
+       
+       
         //Gauge chart code starts here
         var washingFreq = selectedMetadata.wfreq;
 
@@ -125,9 +114,9 @@ function buildCharts(sample) {
                 }
                 }
                 };
-                
+
                 var gaugeData = [gaugeTrace];
-                
+
                 var gaugeLayout = {
                 width: 600,
                 height: 450,
@@ -135,7 +124,7 @@ function buildCharts(sample) {
                 paper_bgcolor: "white",
                 font: { color: "black", family: "Arial" }
                 };
-                
+
                 Plotly.newPlot('gauge', gaugeData, gaugeLayout);
             });
 }
@@ -157,13 +146,6 @@ function buildMetadata(sample) {
             metadataPanel.append("h6").text(`${key.toUpperCase()}: ${value}`);
         });
     });
-}
-
-// Function to handle a change in the dropdown menu
-function optionChanged(newSample) {
-    // Build new charts and metadata for the selected sample
-    buildCharts(newSample);
-    buildMetadata(newSample);
 }
 
 // Initialize the dashboard
