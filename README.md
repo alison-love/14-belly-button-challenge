@@ -1,6 +1,8 @@
 
 # Belly Button Biodiversity Dashboard
 
+https://alison-love.github.io/14-belly-button-challenge/
+
 ## Project Overview
 This project is an interactive web dashboard to explore the Belly Button Biodiversity DataSet, which catalogs the microbes that colonize human navels. The dataset reveals that a small handful of microbial species (also called operational taxonomic units, or OTUs) were present in more than 70% of people, while the rest were relatively rare.
 
@@ -43,4 +45,5 @@ The data is fetched from a JSON file that is hosted on a static server. It inclu
 
 ## Deployment
 
-The dashboard is deployed using GitHub Pages. You can view the live dashboard at [GitHub Pages URL].
+The dashboard is deployed using GitHub Pages. You can view the live dashboard at
+<br>https://alison-love.github.io/14-belly-button-challenge/
