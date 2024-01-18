@@ -52,8 +52,9 @@ function buildCharts(sample,data) {
         }];
     
         const barLayout = {
-            title: "Top 10 OTUs Found in Individual",
-            margin: { t: 30, l: 150 },
+            //title: "Top 10 OTUs Found in Individual",
+            title: { text: "Top 10 OTUs <br> Found in Individual", font: { size: 24 } },
+            margin: { t: 100, l: 150, b: 100 },
             xaxis: { title: "Sample Values" },
             yaxis: { title: "OTU ID" }
         };
@@ -75,10 +76,10 @@ function buildCharts(sample,data) {
         }];
     
         const bubbleLayout = {
-            title: 'Bacteria Cultures Per Sample',
+            title: { text: "Bacteria Cultures Per Sample", font: { size: 24 } },
             xaxis: { title: 'OTU ID' },
             yaxis: { title: 'Sample Values' },
-            margin: { t: 0 },
+            margin: { t: 100 },
             hovermode: 'closest'
         };
 
@@ -96,20 +97,20 @@ function buildCharts(sample,data) {
             value: washingFreq,
             title: { text: "Belly Button Washing Frequency<br>Scrubs per Week", font: { size: 24 } },
             gauge: {
-                axis: { range: [null, 9], tickwidth: 1, tickcolor: "darkblue" },
+                axis: { range: [null, 9] },
                 bar: { color: "rgba(8,29,88,0)" }, // Hide the bar
                 borderwidth: 2,
                 bordercolor: "gray",
                 steps: [
-                    { range: [0, 1], color: "rgba(232, 226, 202, .5)" },
-                    { range: [1, 2], color: "rgba(210, 206, 145, .5)" },
-                    { range: [2, 3], color: "rgba(202, 209, 95, .5)" },
-                    { range: [3, 4], color: "rgba(170, 202, 42, .5)" },
-                    { range: [4, 5], color: "rgba(110, 154, 22, .5)" },
-                    { range: [5, 6], color: "rgba(14, 127, 0, .5)" },
-                    { range: [6, 7], color: "rgba(10, 120, 22, .5)" },
-                    { range: [7, 8], color: "rgba(10, 110, 22, .5)" },
-                    { range: [8, 9], color: "rgba(10, 100, 22, .5)" }
+                    { range: [0, 1], color: "#FDE725FF" },
+                    { range: [1, 2], color: "#B8DE29FF" },
+                    { range: [2, 3], color: "55C667FF" },
+                    { range: [3, 4], color: "20A387FF" },
+                    { range: [4, 5], color: "#238A8DFF" },
+                    { range: [5, 6], color: "2D708EFF" },
+                    { range: [6, 7], color: "39568CFF" },
+                    { range: [7, 8], color: "453781FF" },
+                    { range: [8, 9], color: "481567FF" }
                 ],
                 threshold: {
                     line: { color: "black", width: 4 },
