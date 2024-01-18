@@ -1,3 +1,6 @@
+let globalData;
+
+
 // Function to initialize the dashboard
 function init() {
     // Use D3 to select the dropdown menu
@@ -5,6 +8,7 @@ function init() {
 
     // Use D3 to read in `samples.json`
     d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then((data) => {
+        globalData = data;
         console.log("Data loaded:", data);  // Debugging line    
     // Populate the dropdown menu with test subject IDs
         data.names.forEach((name) => {
@@ -16,6 +20,11 @@ function init() {
         buildCharts(firstSample, data);
         buildMetadata(firstSample, data);
     });
+}
+
+function optionChanged(newSample) {
+    buildCharts(newSample, globalData);
+    buildMetadata(newSample, globalData);
 }
 
 // // Function to build the charts
